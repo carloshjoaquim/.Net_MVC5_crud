@@ -13,10 +13,6 @@ namespace Estoque.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            var produtosDAO = new ProdutosDAO();
-            var produtos = produtosDAO.Lista();
-            ViewBag.Produtos = produtos;
-
             return View();
         }
 	}
