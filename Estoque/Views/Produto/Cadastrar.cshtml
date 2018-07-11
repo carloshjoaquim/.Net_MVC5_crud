@@ -13,6 +13,10 @@
 <body>
         
     <form action="/Produto/Incluir" method="post">
+
+        @Html.ValidationMessage("alimentos")
+        <br/>
+
         <label for="nome">Nome:</label>
         <input id="nome" name="produto.Nome" value="@ViewBag.Produto.Nome" autocomplete="off"/>
         @Html.ValidationMessage("produto.Nome")        

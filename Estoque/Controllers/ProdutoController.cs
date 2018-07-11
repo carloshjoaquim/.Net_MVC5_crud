@@ -17,7 +17,7 @@ namespace CaelumEstoque.Controllers
             var produtos = produtosDAO.Lista();
             ViewBag.Produtos = produtos;
 
-            return View();
+            return View(produtos);
         }
 
         public ActionResult Cadastrar()
@@ -32,6 +32,16 @@ namespace CaelumEstoque.Controllers
         [HttpPost]
         public ActionResult Incluir(Produto produto)
         {
+
+            var categorias = new CategoriasDAO().Lista();
+
+
+            if (produto.CategoriaId.Equals(categorias.Where(c =>c.Nome.Equals("Alimentos")).FirstOrDefault().Id) 
+                && produto.Preco < 0.10)
+            {
+                ModelState.AddModelError("alimentos", "O preço de produtos de alimentação devem ser maiores ou iguais a R$ 0.10 !");
+            }
+
             if (ModelState.IsValid)
             {
                 ProdutosDAO dao = new ProdutosDAO();
@@ -41,12 +51,20 @@ namespace CaelumEstoque.Controllers
             }
             else
             {                
-                CategoriasDAO categoriasDao = new CategoriasDAO();
-                ViewBag.Categorias = categoriasDao.Lista();
+                ViewBag.Categorias = categorias;
                 ViewBag.Produto = produto;
 
                 return View("Cadastrar");
             }            
         }
+
+        public ActionResult Detalhe(int id)
+        {
+            var produto = new ProdutosDAO().BuscaPorId(id);
+            ViewBag.Produto = produto;
+
+            return View(produto);
+        }
+
     }
 }

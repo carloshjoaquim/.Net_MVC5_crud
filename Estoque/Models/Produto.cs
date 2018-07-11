@@ -9,7 +9,7 @@ namespace Estoque.Models
     {
         public int Id { get; set; }
 
-        [Required, MaxLength(30)]
+        [Required, StringLength(30)]
         public String Nome { get; set; }
 
         public float Preco { get; set; }
