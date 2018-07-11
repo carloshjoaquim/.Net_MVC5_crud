@@ -23,8 +23,8 @@ namespace CaelumEstoque.Controllers
         public ActionResult Cadastrar()
         {
             CategoriasDAO dao = new CategoriasDAO();
-            var categorias = dao.Lista();
-            ViewBag.Categorias = categorias;
+            ViewBag.Produto = new Produto();
+            ViewBag.Categorias = dao.Lista();
 
             return View();
         }
@@ -32,10 +32,21 @@ namespace CaelumEstoque.Controllers
         [HttpPost]
         public ActionResult Incluir(Produto produto)
         {
-            ProdutosDAO dao = new ProdutosDAO();
-            dao.Adiciona(produto);
+            if (ModelState.IsValid)
+            {
+                ProdutosDAO dao = new ProdutosDAO();
+                dao.Adiciona(produto);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {                
+                CategoriasDAO categoriasDao = new CategoriasDAO();
+                ViewBag.Categorias = categoriasDao.Lista();
+                ViewBag.Produto = produto;
+
+                return View("Cadastrar");
+            }            
         }
     }
 }
