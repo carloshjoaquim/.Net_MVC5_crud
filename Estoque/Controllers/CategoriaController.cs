@@ -1,4 +1,5 @@
 ﻿using Estoque.DAO;
+using Estoque.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,20 @@ namespace Estoque.Controllers
             ViewBag.Categorias = categorias;
 
             return View();
+        }
+
+        public ActionResult Cadastrar()
+        {
+
+            return View();
+        }
+
+        public ActionResult Incluir(CategoriaDoProduto categoria)
+        {
+            CategoriasDAO dao = new CategoriasDAO();
+            dao.Adiciona(categoria);
+
+            return RedirectToAction("Index");
         }
     }
 }
