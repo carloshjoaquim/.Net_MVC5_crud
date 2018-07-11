@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.DynamicData;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Estoque.Models
 {
-    [TableName("Produtos")]
+    [Table("Produtos")]
     public class Produto
     {
         public int Id { get; set; }
@@ -19,12 +16,13 @@ namespace Estoque.Models
 
         public CategoriaDoProduto Categoria { get; set; }
 
-        public int? CategoriaId { get; set; }
+        [Range(1, int.MaxValue)]
+        public int CategoriaId { get; set; }
 
         [MaxLength(150)]
         public String Descricao { get; set; }
 
-        [Required, Range(1, 10000000)]
+        [Required, Range(1,int.MaxValue)]
         public int Quantidade { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Estoque.Models;
+﻿using Estoque.Migrations;
+using Estoque.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,7 +13,7 @@ namespace Estoque.DAO
 
         public EstoqueContext() : base("EstoqueContext")
         {
-            Database.SetInitializer<EstoqueContext>(new CreateDatabaseIfNotExists<EstoqueContext>());
+            Database.SetInitializer<EstoqueContext>(new MigrateDatabaseToLatestVersion<EstoqueContext, Configuration>());
         }
 
         public DbSet<Produto> Produtos { get; set; }

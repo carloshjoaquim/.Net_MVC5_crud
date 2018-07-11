@@ -14,27 +14,30 @@
         
     <form action="/Produto/Incluir" method="post">
         <label for="nome">Nome:</label>
-        <input id="nome" name="produto.Nome" value="@ViewBag.Produto.Nome" />
+        <input id="nome" name="produto.Nome" value="@ViewBag.Produto.Nome" autocomplete="off"/>
         @Html.ValidationMessage("produto.Nome")        
         <br />
 
         <label for="preco">Preço:</label>
-        <input id="preco" name="produto.Preco" value="@ViewBag.Produto.Preco" />
+        <input id="preco" name="produto.Preco" value="@ViewBag.Produto.Preco" autocomplete="off" />
         <br />
 
         <label for="quantidade">Quantidade:</label>
-        <input id="quantidade" name="produto.Quantidade" value="@ViewBag.Produto.Quantidade" />
+        <input id="quantidade" name="produto.Quantidade" value="@ViewBag.Produto.Quantidade" autocomplete="off"/>
         @Html.ValidationMessage("produto.Quantidade")
         <br />
 
         <label for="descricao">Descrição:</label>
-        <input id="descricao" name="produto.Descricao" value="@ViewBag.Produto.Descricao" />
+        <input id="descricao" name="produto.Descricao" value="@ViewBag.Produto.Descricao" autocomplete="off" />
         @Html.ValidationMessage("produto.Descricao")
 
         <br />
 
         <label for="categoria">Categoria:</label>
         <select id="categoria" name="produto.CategoriaId">
+            <option value="0">
+                Selecione...
+            </option>
             @foreach (var categoria in ViewBag.Categorias)
             {
                 <option value="@categoria.Id" selected="@categoria.Id.Equals(ViewBag.Produto.CategoriaId)">
