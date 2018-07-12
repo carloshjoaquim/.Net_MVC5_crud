@@ -1,57 +1,41 @@
-﻿
-@{
-    Layout = null;
-}
+﻿        
+<form action="/Produto/Incluir" method="post">
 
-<!DOCTYPE html>
+    @Html.ValidationMessage("alimentos")
+    <br/>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Cadastrar Produtos</title>
-</head>
-<body>
-        
-    <form action="/Produto/Incluir" method="post">
+    <label for="nome">Nome:</label>
+    <input id="nome" name="produto.Nome" value="@ViewBag.Produto.Nome" class="form-control" autocomplete="off"/>
+    @Html.ValidationMessage("produto.Nome")        
+    <br />
 
-        @Html.ValidationMessage("alimentos")
-        <br/>
+    <label for="preco">Preço:</label>
+    <input id="preco" name="produto.Preco" value="@ViewBag.Produto.Preco" class="form-control" autocomplete="off" />
+    <br />
 
-        <label for="nome">Nome:</label>
-        <input id="nome" name="produto.Nome" value="@ViewBag.Produto.Nome" autocomplete="off"/>
-        @Html.ValidationMessage("produto.Nome")        
-        <br />
+    <label for="quantidade">Quantidade:</label>
+    <input id="quantidade" name="produto.Quantidade" value="@ViewBag.Produto.Quantidade" class="form-control" autocomplete="off"/>
+    @Html.ValidationMessage("produto.Quantidade")
+    <br />
 
-        <label for="preco">Preço:</label>
-        <input id="preco" name="produto.Preco" value="@ViewBag.Produto.Preco" autocomplete="off" />
-        <br />
+    <label for="descricao">Descrição:</label>
+    <input id="descricao" name="produto.Descricao" value="@ViewBag.Produto.Descricao" class="form-control" autocomplete="off" />
+    @Html.ValidationMessage("produto.Descricao")
 
-        <label for="quantidade">Quantidade:</label>
-        <input id="quantidade" name="produto.Quantidade" value="@ViewBag.Produto.Quantidade" autocomplete="off"/>
-        @Html.ValidationMessage("produto.Quantidade")
-        <br />
+    <br />
 
-        <label for="descricao">Descrição:</label>
-        <input id="descricao" name="produto.Descricao" value="@ViewBag.Produto.Descricao" autocomplete="off" />
-        @Html.ValidationMessage("produto.Descricao")
-
-        <br />
-
-        <label for="categoria">Categoria:</label>
-        <select id="categoria" name="produto.CategoriaId">
-            <option value="0">
-                Selecione...
+    <label for="categoria">Categoria:</label>
+    <select id="categoria" name="produto.CategoriaId" class="form-control">
+        <option value="0">
+            Selecione...
+        </option>
+        @foreach (var categoria in ViewBag.Categorias)
+        {
+            <option value="@categoria.Id" selected="@categoria.Id.Equals(ViewBag.Produto.CategoriaId)">
+                @categoria.Nome
             </option>
-            @foreach (var categoria in ViewBag.Categorias)
-            {
-                <option value="@categoria.Id" selected="@categoria.Id.Equals(ViewBag.Produto.CategoriaId)">
-                    @categoria.Nome
-                </option>
-            }
-        </select>
-        <br />
-        <input type="submit" />
-    </form>
-
-</body>
-</html>
+        }
+    </select>
+    <br />
+    <input type="submit" />
+</form>

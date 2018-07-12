@@ -1,0 +1,10 @@
+﻿.header {
+    padding-bottom: 10px;
+    border-bottom: 3px solid #e5e5e5;
+    margin: 20px auto 20px;
+}
+
+#conteudo {
+    padding-left:5%;
+    padding-right:5%;
+}

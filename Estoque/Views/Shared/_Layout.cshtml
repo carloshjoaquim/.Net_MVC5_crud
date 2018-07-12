@@ -1,0 +1,24 @@
+﻿
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Controle de Estoque</title>
+    <link rel="stylesheet" href="~/Content/Styles/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/Styles/Site.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <ul class="nav nav-pills pull-right">
+                <li>@Html.ActionLink("Home ", "Index", "Home")</li>
+                <li>@Html.ActionLink("Produtos ", "Index", "Produto")</li>
+                <li>@Html.ActionLink("Categorias ", "Index", "Categoria")</li>
+            </ul>
+            <h3 class="text-muted">Controle de Estoque</h3>
+        </div>
+    </div>
+    <div id="conteudo">
+        @RenderBody()
+    </div>
+</body>
+</html>

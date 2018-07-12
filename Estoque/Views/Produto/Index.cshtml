@@ -1,41 +1,23 @@
 ﻿@model IList<Estoque.Models.Produto>
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div>
-        <h1>Página Inicial da aplicação</h1>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Quantidade</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    @foreach (var item in Model)
-                    {
-                    <tr>
-                        <td>@item.Id</td>
-                        <td>@Html.RouteLink(item.Nome, "DetalheProduto", new { id = item.Id })</td>
-                        <td>@item.Quantidade</td>
-                    </tr>
-                    }
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </body>
-</html>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Quantidade</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Id</td>
+                <td>@Html.RouteLink(item.Nome, "DetalheProduto", new { id = item.Id })</td>
+                <td>@item.Quantidade</td>
+            </tr>
+            }
+        </tr>
+        </tbody>
+</table>
