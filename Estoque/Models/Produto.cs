@@ -22,7 +22,7 @@ namespace Estoque.Models
         [MaxLength(150)]
         public String Descricao { get; set; }
 
-        [Required, Range(1,int.MaxValue)]
+        [Required, Range(0,int.MaxValue)]
         public int Quantidade { get; set; }
     }
 }

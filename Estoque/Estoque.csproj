@@ -121,6 +121,10 @@
     <Compile Include="Migrations\201807112159025_UpProdutos.Designer.cs">
       <DependentUpon>201807112159025_UpProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807122255109_ProdutoQuantidade.cs" />
+    <Compile Include="Migrations\201807122255109_ProdutoQuantidade.Designer.cs">
+      <DependentUpon>201807122255109_ProdutoQuantidade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoriaDoProduto.cs" />
     <Compile Include="Models\Produto.cs" />
@@ -154,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807112159025_UpProdutos.resx">
       <DependentUpon>201807112159025_UpProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807122255109_ProdutoQuantidade.resx">
+      <DependentUpon>201807122255109_ProdutoQuantidade.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
