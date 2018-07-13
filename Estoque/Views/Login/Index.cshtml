@@ -1,16 +1,37 @@
 ﻿
-<h2>Login</h2>
-<form action="/Login/Logar" method="post">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input id="login" type="text" class="form-control" name="login" placeholder="Login" autocomplete="off">
-    </div>
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        <input id="senha" type="password" class="form-control" name="senha" placeholder="Senha">
-    </div>
-     
-    </br>
+@{
+    Layout = null; // Não utilizar o Layout padrão para a página de login.
+}
 
-    <input type="submit" value="Logar" class="btn btn-primary" />
-</form>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Controle de Estoque</title>
+    <link rel="stylesheet" href="~/Content/Styles/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/Styles/Site.css" />
+</head>
+<body>
+    <div class="container">  
+        <div class="header">
+            <h3 class="text-muted">Controle de Estoque</h3>
+        </div>
+    </div>
+    <div id="loginform">
+        <h2>Login</h2>
+        <form action="/Login/Logar" method="post">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="login" type="text" class="form-control" name="login" placeholder="Login" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="senha" type="password" class="form-control" name="senha" placeholder="Senha">
+            </div>
+                @Html.ValidationMessage("login")
+            </br>
+
+            <input type="submit" value="Logar" class="btn btn-primary" style="text-align:center;float:right;width:100px" />
+        </form>
+    </div>
+</body>
+</html>

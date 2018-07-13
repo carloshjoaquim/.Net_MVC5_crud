@@ -8,3 +8,10 @@
     padding-left:5%;
     padding-right:5%;
 }
+
+#loginform {
+    width: 25%;
+    height: 20%;
+    margin: auto;
+    padding-top: 5%;
+}
