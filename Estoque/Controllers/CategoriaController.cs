@@ -1,4 +1,5 @@
 ﻿using Estoque.DAO;
+using Estoque.Filtros;
 using Estoque.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Estoque.Controllers
 {
+    [AutorizacaoFilter]
     public class CategoriaController : Controller
     {
         // GET: Categoria
@@ -26,6 +28,7 @@ namespace Estoque.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult Incluir(CategoriaDoProduto categoria)
         {
             CategoriasDAO dao = new CategoriasDAO();

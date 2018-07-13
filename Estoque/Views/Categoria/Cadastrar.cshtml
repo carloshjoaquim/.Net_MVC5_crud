@@ -1,5 +1,7 @@
 ﻿
 <form action="/Categoria/Incluir" method="post">
+    @Html.AntiForgeryToken()
+
     <label for="nome">Nome:</label>
     <input id="nome" name="categoria.Nome" class="form-control" />
     <br />

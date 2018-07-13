@@ -1,7 +1,8 @@
 ﻿        
 <form action="/Produto/Incluir" method="post">
 
-    @Html.ValidationMessage("alimentos")
+    @Html.AntiForgeryToken()
+    @Html.ValidationMessage("alimentos")   
     <br/>
 
     <label for="nome">Nome:</label>
