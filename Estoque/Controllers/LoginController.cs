@@ -27,5 +27,12 @@ namespace Estoque.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        public ActionResult Logout()
+        {
+            Session["usuarioLogado"] = null;
+
+            return RedirectToAction("Index");
+        }
     }
 }
