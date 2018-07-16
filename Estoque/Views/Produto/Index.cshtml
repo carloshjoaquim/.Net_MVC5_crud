@@ -19,25 +19,43 @@
                 <td id="quantidade@(item.Id)">@item.Quantidade</td>
                 <td><a href="#" onclick="DecrementaQnt(@item.Id)">Decrementa</a></td>
             </tr>
-            }
-        </tr>
+        }
+            </tr>
         </tbody>
-</table>
-<script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
-<script type="text/javascript">
+    </table>
+
+    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Cadastrar", "Produto")'">Novo</button>
+
+
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
 
     function DecrementaQnt(produtoId)
     {
-        var url = "@Url.Action("DecrementaQnt", "Produto")";
-        var params = { id: produtoId };
-        $.post(url, params, atualiza);
+        var url = "@Url.Action("DecrementaQnt", "Produto")/" +produtoId;
+        var data = {id: produtoId}
+        var json = JSON.stringify(data)
+
+        $.ajax({
+            type: "PUT",
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            cache: false,
+            success: function(d) {
+                atualiza(d);
+             },
+            error: function(xhr, textStatus, errorThrown) {
+                console.log('Error')
+             }
+        });
     }
-        
+
     function atualiza(resposta)
     {
         var elemento = $("#quantidade" + resposta.Id);
         elemento.html(resposta.Quantidade);
     }
 
-</script>
+    </script>
 
