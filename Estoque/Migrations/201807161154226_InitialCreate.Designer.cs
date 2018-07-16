@@ -7,13 +7,13 @@ namespace Estoque.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class ProdutoQuantidade : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ProdutoQuantidade));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807122255109_ProdutoQuantidade"; }
+            get { return "201807161154226_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

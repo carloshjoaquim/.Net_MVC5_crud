@@ -1,7 +1,6 @@
 ﻿@model Estoque.Models.CategoriaDoProduto
 
-<form action="/Categoria/EditaCategoria" method="post">
-    @Html.AntiForgeryToken()
+<form>
 
     <labe> Id</labe>
     <input id="idP" class="form-control" name="categoria.Id" value=@Model.Id readonly>
@@ -15,6 +14,32 @@
     <input id="descricao" name="categoria.Descricao" class="form-control" value="@Model.Descricao" />
     </br>
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
-    <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Categoria")'">Voltar</button>
+    <div id="alert" class="alert alert-success" role="alert" style="visibility:hidden">
+        Cadastro efetuado com sucesso !.
+    </div>
 </form>
+    <button class="btn btn-primary" onclick="Editar()">Salvar</button>
+    <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Categoria")'">Voltar</button>
+
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+
+    function Editar()
+    {
+        var url = "@Url.Action("EditaCategoria", "Categoria")";
+        var produtoId = $('#idP').val();
+        var nomeP = $('#nomeP').val();
+        var desP = $('#descricao').val();
+
+        var params = { id: produtoId, name: nomeP, descricao: desP };
+        $.post(url, params, atualizado);
+
+    }
+    function atualizado()
+    {
+        $('#alert').css("visibility", "visible");
+    }
+
+
+</script>

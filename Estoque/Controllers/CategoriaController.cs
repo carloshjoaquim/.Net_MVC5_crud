@@ -43,14 +43,19 @@ namespace Estoque.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditaCategoria(CategoriaDoProduto categoria)
+        public ActionResult EditaCategoria(int id, string name, string descricao)
         {
+            var categoria = new CategoriaDoProduto
+            {
+                Id = id,
+                Nome = name,
+                Descricao = descricao
+            };
 
             CategoriasDAO dao = new CategoriasDAO();
             dao.Atualiza(categoria);
 
-            return RedirectToAction("Index");
+            return Json(categoria);
         }
 
         public ActionResult Excluir(CategoriaDoProduto categoria)
