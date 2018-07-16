@@ -1,0 +1,20 @@
+﻿@model Estoque.Models.CategoriaDoProduto
+
+<form action="/Categoria/EditaCategoria" method="post">
+    @Html.AntiForgeryToken()
+
+    <labe> Id</labe>
+    <input id="idP" class="form-control" name="categoria.Id" value=@Model.Id readonly>
+
+    <label>Nome do Produto</label>
+    <input id="nomeP" name="categoria.Nome" class="form-control" value="@Model.Nome" />
+
+    </br>
+
+    <label>Descrição do Produto</label>
+    <input id="descricao" name="categoria.Descricao" class="form-control" value="@Model.Descricao" />
+    </br>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Categoria")'">Voltar</button>
+</form>

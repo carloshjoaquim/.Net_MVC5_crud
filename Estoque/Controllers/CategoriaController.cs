@@ -36,5 +36,33 @@ namespace Estoque.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Editar(CategoriaDoProduto categoria)
+        {
+            return View(categoria);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditaCategoria(CategoriaDoProduto categoria)
+        {
+
+            CategoriasDAO dao = new CategoriasDAO();
+            dao.Atualiza(categoria);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Excluir(CategoriaDoProduto categoria)
+        {
+            CategoriasDAO dao = new CategoriasDAO();
+            dao.Remove(categoria);
+
+            return RedirectToAction("Index");
+
+        }
+
+
+
     }
 }

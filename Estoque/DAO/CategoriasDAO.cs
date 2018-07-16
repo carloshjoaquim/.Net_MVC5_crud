@@ -41,5 +41,14 @@ namespace Estoque.DAO
                 contexto.SaveChanges();
             }
         }
+
+        public void Remove(CategoriaDoProduto categoria)
+        {
+            using (var contexto = new EstoqueContext())
+            {
+                contexto.Entry(categoria).State = System.Data.Entity.EntityState.Deleted;
+                contexto.SaveChanges();
+            }
+        }
     }
 }
