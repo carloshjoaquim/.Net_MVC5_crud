@@ -14,8 +14,7 @@
     <input id="descricao" name="categoria.Descricao" class="form-control" value="@Model.Descricao" />
     </br>
 
-    <div id="alert" class="alert alert-success" role="alert" style="visibility:hidden">
-        Cadastro efetuado com sucesso !.
+    <div id="alert" class="alert alert-success" role="alert" style="visibility:hidden">        
     </div>
 </form>
     <button class="btn btn-primary" onclick="Editar()">Salvar</button>
@@ -32,13 +31,39 @@
         var nomeP = $('#nomeP').val();
         var desP = $('#descricao').val();
 
-        var params = { id: produtoId, name: nomeP, descricao: desP };
-        $.post(url, params, atualizado);
+        var data = { id: produtoId, name: nomeP, descricao: desP };
+        var json = JSON.stringify(data)
+
+        $.ajax({
+            type: "PUT",
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            cache: false,
+            success: function(d) {
+                atualizado()
+             },
+            error: function(xhr, textStatus, errorThrown) {
+                erro()
+             }
+        });
 
     }
+
+
     function atualizado()
     {
         $('#alert').css("visibility", "visible");
+        $('#alert').html("Cadastro efetuado com sucesso !");
+
+    }
+
+    function erro()
+    {
+        $('#alert').css("visibility", "visible");
+        $('#alert').removeClass("alert-success");
+        $('#alert').addClass("alert-danger");
+        $('#alert').html("Ops... Houve um erro na alteração !");
     }
 
 

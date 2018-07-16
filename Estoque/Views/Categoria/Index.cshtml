@@ -10,23 +10,60 @@
         <tr>
             @foreach (var item in ViewBag.Categorias)
             {
-        <tr>
-            <td>@item.Id</td>
-            <td>@item.Nome</td>
-            <td align="right">
-                <button type="button" class="btn btn-info btn-sm" onclick="location.href='@Url.Action("Editar", "Categoria", @item)'">
-                    Editar
-                </button>
+            <tr>
+                <td id="idItem+@item.Id">@item.Id</td>
+                <td>@item.Nome</td>
+                <td align="right">
+                    <button type="button" class="btn btn-info btn-sm" onclick="location.href='@Url.Action("Editar", "Categoria", @item)'">
+                        Editar
+                    </button>
 
-                <button type="button" class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Excluir", "Categoria", @item)'">
-                    Excluir
-                </button>
-            </td>
-        </tr>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="Deletar(@item.Id)">
+                        Excluir
+                    </button>
+                </td>
+            </tr>
         }
             </tr>
         </tbody>
     </table>
     <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Cadastrar", "Categoria")'">Novo</button>
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+
+    function Deletar(id)
+    {
+        var url = "@Url.Action("Excluir", "Categoria")";
+
+        var data = { id: id };
+        var json = JSON.stringify(data)
+
+        $.ajax({
+            type: "DELETE",
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            cache: false,
+            success: function (d) {                
+                sucesso(id)
+             },
+            error: function(xhr, textStatus, errorThrown) {
+                
+             }
+        });
+
+    }
+
+
+    function sucesso(id)
+    {
+
+        $('#idItem' + id).fadeOut("slow", function () {
+            $('#idItem' + id).remove();
+        });
+
+    }
+</script>
 
 

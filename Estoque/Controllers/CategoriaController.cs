@@ -42,8 +42,8 @@ namespace Estoque.Controllers
             return View(categoria);
         }
 
-        [HttpPost]
-        public ActionResult EditaCategoria(int id, string name, string descricao)
+        [HttpPut]
+        public JsonResult EditaCategoria(int id, string name, string descricao)
         {
             var categoria = new CategoriaDoProduto
             {
@@ -58,12 +58,13 @@ namespace Estoque.Controllers
             return Json(categoria);
         }
 
-        public ActionResult Excluir(CategoriaDoProduto categoria)
+        [HttpDelete]
+        public JsonResult Excluir(CategoriaDoProduto categoria)
         {
             CategoriasDAO dao = new CategoriasDAO();
             dao.Remove(categoria);
 
-            return RedirectToAction("Index");
+            return Json("Excluido");
 
         }
 
