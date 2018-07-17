@@ -1,0 +1,86 @@
+﻿@model Estoque.Models.Produto
+
+<h3>Editar</h3>
+
+<form id="form">
+
+
+
+    <label for="nome">Nome:</label>
+    <input id="nome" name="Nome" value="@Model.Nome" class="form-control" autocomplete="off" />
+
+    <label for="id">Id:</label>
+    <input id="id" name="Id" value="@Model.Id" class="form-control" readonly />
+
+    <label for="preco">Preço:</label>
+    <input id="preco" name="Preco" value="@Model.Preco" class="form-control" autocomplete="off" />
+
+    <label for="quantidade">Quantidade:</label>
+    <input id="quantidade" name="Quantidade" value="@Model.Quantidade" class="form-control" autocomplete="off" />
+
+
+    <label for="descricao">Descrição:</label>
+    <input id="descricao" value="@Model.Descricao" name="Descricao" class="form-control" autocomplete="off" />
+
+
+    <label for="categoria">Categoria:</label>
+    <select id="categoria" name="CategoriaId" class="form-control">
+        <option value="0">
+            Selecione...
+        </option>
+        @foreach (var categoria in ViewBag.Categorias)
+        {
+            <option value="@categoria.Id" selected="@categoria.Id.Equals(@Model.CategoriaId)">
+                @categoria.Nome
+            </option>
+        }
+    </select>
+    <br />
+    <div id="alert" class="alert alert-success" role="alert" style="visibility:hidden"> </div>
+</form>
+<button class="btn btn-primary" onclick="Editar()">Salvar</button>
+<button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Produto")'">Voltar</button>
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+
+    function Editar()
+    {
+        var url = "@Url.Action("EditaProduto", "Produto")";
+
+        console.log(JSON.stringify($('#form').serialize()))
+
+        $.ajax({
+            type: "PUT",
+            url: url,
+            dataType: 'application/json',
+            data: JSON.stringify($('#form').serialize()),
+            cache: false,
+            success: function(d) {
+                atualizado()
+             },
+            error: function(xhr, textStatus, errorThrown) {
+                erro()
+             }
+        });
+
+    }
+
+
+    function atualizado()
+    {
+        $('#alert').css("visibility", "visible");
+        $('#alert').html("Cadastro efetuado com sucesso !");
+
+    }
+
+    function erro()
+    {
+        $('#alert').css("visibility", "visible");
+        $('#alert').removeClass("alert-success");
+        $('#alert').addClass("alert-danger");
+        $('#alert').html("Ops... Houve um erro na alteração !");
+    }
+
+
+</script>

@@ -18,6 +18,15 @@
                 <td>@Html.RouteLink(item.Nome, "DetalheProduto", new { id = item.Id })</td>
                 <td id="quantidade@(item.Id)">@item.Quantidade</td>
                 <td><a href="#" onclick="DecrementaQnt(@item.Id)">Decrementa</a></td>
+                <td align="right">
+                    <button type="button" class="btn btn-info btn-sm" onclick="location.href='@Url.Action("Editar", "Produto", @item)'">
+                        Editar
+                    </button>
+
+                    <button type="button" class="btn btn-danger btn-sm" onclick="Deletar(@item.Id)">
+                        Excluir
+                    </button>
+                </td>
             </tr>
         }
             </tr>
@@ -57,5 +66,37 @@
         elemento.html(resposta.Quantidade);
     }
 
-    </script>
 
+    function Deletar(id)
+    {
+        var url = "@Url.Action("Excluir", "Produto")";
+
+        var data = { id: id };
+        var json = JSON.stringify(data)
+
+        $.ajax({
+            type: "DELETE",
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            cache: false,
+            success: function (d) {
+                sucesso(id);
+             },
+            error: function(xhr, textStatus, errorThrown) {
+
+             }
+        });
+
+    }
+
+
+    function sucesso(id)
+    {
+        $('#idItem' + id).fadeOut("slow", function () {
+            var thisRow = $('#idItem' + id).closest("tr");
+            thisRow.remove();
+         });
+    }
+
+</script>

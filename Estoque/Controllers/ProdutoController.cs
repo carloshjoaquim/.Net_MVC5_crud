@@ -38,8 +38,9 @@ namespace CaelumEstoque.Controllers
         {
 
             var categorias = new CategoriasDAO().Lista();
+            var cAlimento = categorias.Where(c => c.Nome.Contains("Alimento")).FirstOrDefault();
 
-            if (produto.CategoriaId.Equals(categorias.Where(c =>c.Nome.Contains("Alimento")).FirstOrDefault().Id) 
+            if (cAlimento  != null && produto.CategoriaId.Equals(cAlimento.Id) 
                 && produto.Preco < 0.10)
             {
                 ModelState.AddModelError("alimentos", "O preço de produtos de alimentação devem ser maiores ou iguais a R$ 0.10 !");
@@ -71,13 +72,31 @@ namespace CaelumEstoque.Controllers
         }
 
         [HttpPut]
-        public ActionResult DecrementaQnt(int id)
+        public JsonResult DecrementaQnt(int id)
         {
             var dao = new ProdutosDAO();
             var produto = dao.BuscaPorId(id);
             produto.Quantidade--;
 
             dao.Atualiza(produto);
+
+            return Json(produto);
+        }
+
+        
+        public ActionResult Editar(Produto produto)
+        {
+            var dao = new CategoriasDAO();
+            ViewBag.Categorias = dao.Lista();
+
+            return View(produto);
+        }
+
+        [HttpPut]
+        public JsonResult EditaProduto(Produto produto)
+        {
+            var daoP = new ProdutosDAO();
+            daoP.Atualiza(produto);
 
             return Json(produto);
         }
