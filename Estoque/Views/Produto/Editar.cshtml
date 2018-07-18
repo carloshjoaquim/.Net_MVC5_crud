@@ -4,13 +4,11 @@
 
 <form id="form">
 
-
+    <label for="id">Id:</label>
+    <input id="id" name="Id" value="@Model.Id" class="form-control" readonly />
 
     <label for="nome">Nome:</label>
     <input id="nome" name="Nome" value="@Model.Nome" class="form-control" autocomplete="off" />
-
-    <label for="id">Id:</label>
-    <input id="id" name="Id" value="@Model.Id" class="form-control" readonly />
 
     <label for="preco">Preço:</label>
     <input id="preco" name="Preco" value="@Model.Preco" class="form-control" autocomplete="off" />
@@ -18,10 +16,8 @@
     <label for="quantidade">Quantidade:</label>
     <input id="quantidade" name="Quantidade" value="@Model.Quantidade" class="form-control" autocomplete="off" />
 
-
     <label for="descricao">Descrição:</label>
     <input id="descricao" value="@Model.Descricao" name="Descricao" class="form-control" autocomplete="off" />
-
 
     <label for="categoria">Categoria:</label>
     <select id="categoria" name="CategoriaId" class="form-control">
@@ -47,14 +43,12 @@
     function Editar()
     {
         var url = "@Url.Action("EditaProduto", "Produto")";
-
-        console.log(JSON.stringify($('#form').serialize()))
-
+        console.log($('#form').serialize());
         $.ajax({
             type: "PUT",
             url: url,
-            dataType: 'application/json',
-            data: JSON.stringify($('#form').serialize()),
+            dataType: 'json',
+            data: $('#form').serialize(),
             cache: false,
             success: function(d) {
                 atualizado()

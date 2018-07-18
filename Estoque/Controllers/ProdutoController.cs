@@ -95,11 +95,19 @@ namespace CaelumEstoque.Controllers
         [HttpPut]
         public JsonResult EditaProduto(Produto produto)
         {
-            var daoP = new ProdutosDAO();
-            daoP.Atualiza(produto);
+           var daoP = new ProdutosDAO();
+           daoP.Atualiza(produto);
 
             return Json(produto);
         }
 
+        [HttpDelete]
+        public JsonResult RemoveProduto(Produto produto)
+        {
+            var dao = new ProdutosDAO();
+            dao.Remove(produto);
+
+            return Json("Excluido");
+        }
     }
 }
